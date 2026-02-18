@@ -1,0 +1,7 @@
+.mainContainer{
+    display: flex;
+    gap: 20px;
+}
+aside{
+    width: 250px;
+}

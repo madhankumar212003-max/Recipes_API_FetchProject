@@ -1,0 +1,124 @@
+.filterBox {
+  background: #ffffff;
+  padding: 18px;
+ 
+  border-radius: 14px;
+  background-color: #eceae9;
+  height: fit-content;
+  margin: 10px;
+  width: 230px;
+ 
+}
+
+/* Title */
+.filterBox h3 {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 12px;
+  color: #222;
+}
+
+/* Checkbox Item */
+.checkboxItem {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  color: #444;
+}
+
+
+
+/* Hide default checkbox */
+.checkboxItem input {
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border: 2px solid #ff9966;
+  border-radius: 4px;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+
+}
+/* Checked Style */
+.checkboxItem input:checked {
+  background:  #ff9966;
+}
+
+/* Checkmark */
+.checkboxItem input:checked::before {
+  content: "✔";
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+/* Label text */
+.checkboxItem span {
+  user-select: none;
+}
+
+
+/* Section */
+.filterSection {
+  margin-bottom: 20px;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 10px 50px;
+}
+
+/* Clickable Header */
+.filterHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  user-select: none;
+}
+
+.filterHeader h3 {
+  font-size: 16px;
+  margin: 0;
+}
+
+/* Scrollable Content */
+.filterContent {
+  max-height: 250px;   /* control height */
+  overflow-y: auto;
+  margin-top: 10px;
+  padding-right: 5px;
+}
+
+/* Custom Scrollbar */
+.filterContent::-webkit-scrollbar {
+  width: 6px;
+}
+
+.filterContent::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 10px;
+}
+
+/* Checkbox styling */
+.checkboxItem {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.checkboxItem input {
+  margin-right: 8px;
+  cursor: pointer;
+}
+.filter_arrow{
+  font-size: 15px;
+  font-weight: 700;
+  color: #ff9966 ;
+  
+}

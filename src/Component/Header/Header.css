@@ -1,0 +1,78 @@
+.Header {
+  width: 100%;
+  background: #df4d04;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+  position: sticky;
+  top: 0;
+  z-index: 999;
+}
+
+/* Layout */
+.header_container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 14px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+}
+
+/* Logo */
+.logo {
+  font-size: 24px;
+  font-weight: 800;
+  color: #f5f3f3;
+  cursor: pointer;
+  transition: 0.25s ease;
+}
+
+
+
+/* Search Bar */
+.search_bar {
+  flex: 1;
+  max-width: 480px;
+  display: flex;
+  align-items: center;
+  background: #f6f6f6;
+  border-radius: 12px;
+  padding: 6px;
+  border: 1px solid #eee;
+}
+
+.search_bar input {
+  flex: 1;
+  border: none;
+  outline: none;
+  padding: 10px 14px;
+  background: transparent;
+  font-size: 14px;
+}
+
+/* Search Button */
+.search_bar button {
+  background:  #ff9966;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+
+/* Saved Items Button */
+.header_container > button {
+  background:  #ff9966;
+  color: white;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 10px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+
+
