@@ -35,7 +35,7 @@ function App() {
         // Extract unique meal types
         const uniqueMealTypes = [
           // Use a Set to get unique values from all mealType arrays
-          ...new Set(data.recipes.flatMap((item) => item.mealType || [])),// Handle cases where mealType might be undefined
+          ...new Set(data.recipes.flatMap((item) => item.mealType || [])), // Handle cases where mealType might be undefined
         ];
         setMealTypes(uniqueMealTypes);
       } catch (error) {
@@ -46,22 +46,22 @@ function App() {
   }, []);
 
   const handleClick = (product) => {
-    //
+    // Set the selected product and switch to the product details view
     setSelectedProduct(product);
     setviewSaveditems(false);
   };
-
+  // Check if the product is already saved to avoid duplicates
   const handleSave = (product) => {
     const exists = savedItems.find((item) => item.id === product.id);
     if (!exists) {
       setSavedItems([...savedItems, product]);
     }
   };
-
+  // Remove item from saved items based on id
   const removeItem = (id) => {
     setSavedItems(savedItems.filter((item) => item.id !== id));
   };
-
+  // Filter recipes based on selected categories, meal types, and search term
   const filteredRecipes = Recipes.filter((recipe) => {
     const matchesCategory =
       selectedCategories.length === 0 ||
@@ -78,6 +78,7 @@ function App() {
     return matchesCategory && matchesMealType && matchesSearch;
   });
   const handleMealTypeChange = (type) => {
+    // Toggle meal type selection
     if (selectedMealTypes.includes(type)) {
       setSelectedMealTypes(selectedMealTypes.filter((t) => t !== type));
     } else {
