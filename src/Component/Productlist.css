@@ -1,9 +1,20 @@
+.mainproductcontainer {
+  width: auto;
+  margin: auto;
+  padding: 20px;
+}
 .product_container {
   display: grid;
   grid-template-columns: repeat(4, 1fr); /*4 cards per row */
 width: auto;
   gap: 20px;
   padding: 20px;
+}
+.no_match{
+
+  text-align: center;
+  font-size: 18px;
+  color: #777;
 }
 
 
@@ -70,6 +81,7 @@ width: auto;
   cursor: pointer;
   transition: 0.2s ease;
 }
+
 
 /* selected Product -----------------------------------------------------------------------------*/
 .selected_Product {

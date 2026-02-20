@@ -74,8 +74,7 @@ function App() {
     const matchesSearch = recipe.name
       .toLowerCase()
       .includes(searchTerm.toLowerCase());
-
-    return matchesCategory && matchesMealType && matchesSearch;
+    return matchesCategory && matchesMealType && matchesSearch;// Return true if the recipe matches all filters and search term
   });
   const handleMealTypeChange = (type) => {
     // Toggle meal type selection
