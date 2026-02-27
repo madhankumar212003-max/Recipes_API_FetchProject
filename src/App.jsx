@@ -7,6 +7,7 @@ import Header from "./Component/Header/Header";
 import Filter from "./Component/Filtercategory/Filter";
 import Footer from "./Component/Footer/Footer";
 
+
 function App() {
   const [Recipes, setRecipes] = useState([]); // State to hold all recipes
   const [selectedProduct, setSelectedProduct] = useState(null); // State to hold the currently selected recipe
@@ -17,6 +18,7 @@ function App() {
   const [mealTypes, setMealTypes] = useState([]); // State to hold unique meal types
   const [selectedMealTypes, setSelectedMealTypes] = useState([]); // State to hold selected meal type filters
   const [searchTerm, setSearchTerm] = useState(""); // State to hold the current search term
+  const [viewProfile, setViewProfile] = useState(false); // State to toggle profile view
 
   useEffect(() => {
     const fetchusers = async () => {
@@ -93,7 +95,10 @@ function App() {
         savedItems={savedItems}
         searchTerm={searchTerm}
         setSearchTerm={setSearchTerm}
+        viewProfile={viewProfile}
+        setViewProfile={setViewProfile}
       />
+   
 
       {selectedProduct ? (
         <SelectedProduct
@@ -130,6 +135,7 @@ function App() {
           />
         </div>
       )}
+       
       <Footer
         setSelectedProduct={setSelectedProduct}
         setviewSaveditems={setviewSaveditems}
