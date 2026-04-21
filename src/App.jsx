@@ -7,7 +7,6 @@ import Header from "./Component/Header/Header";
 import Filter from "./Component/Filtercategory/Filter";
 import Footer from "./Component/Footer/Footer";
 
-
 function App() {
   const [Recipes, setRecipes] = useState([]); // State to hold all recipes
   const [selectedProduct, setSelectedProduct] = useState(null); // State to hold the currently selected recipe
@@ -19,6 +18,12 @@ function App() {
   const [selectedMealTypes, setSelectedMealTypes] = useState([]); // State to hold selected meal type filters
   const [searchTerm, setSearchTerm] = useState(""); // State to hold the current search term
   const [viewProfile, setViewProfile] = useState(false); // State to toggle profile view
+  const [difficulty, setDifficulty] = useState([]); // State to hold unique difficulty levels
+  const [selectedDifficulty, setSelectedDifficulty] = useState([]); // State to hold selected difficulty filters
+  const [ratings, setRatings] = useState([]); // State to hold unique ratings
+  const [selectedRatings, setSelectedRatings] = useState([]); // State to hold selected rating filters
+  const [cookTimeMinutes, setCookTimeMinutes] = useState([]); // State to hold unique cook time options
+  const [selectedCookTimeMinutes, setSelectedCookTimeMinutes] = useState([]); // State to hold selected cook time filters
 
   useEffect(() => {
     const fetchusers = async () => {
@@ -40,6 +45,17 @@ function App() {
           ...new Set(data.recipes.flatMap((item) => item.mealType || [])), // Handle cases where mealType might be undefined
         ];
         setMealTypes(uniqueMealTypes);
+        const uniquedifficulty = [
+          ...new Set(data.recipes.map((item) => item.difficulty)),
+        ];
+        setDifficulty(uniquedifficulty);
+        // Create rating ranges
+        const ratingRanges = ['4-5', '3-4', '2-3', '1-2', '0-1'];
+        setRatings(ratingRanges);
+        const uniqueCookTimes = [
+          ...new Set(data.recipes.map((item) => item.cookTimeMinutes)),
+        ].sort((a, b) => a - b); // Sort ascending
+        setCookTimeMinutes(uniqueCookTimes);
       } catch (error) {
         console.log(error);
       }
@@ -73,11 +89,31 @@ function App() {
       selectedMealTypes.length === 0 ||
       recipe.mealType?.some((type) => selectedMealTypes.includes(type));
 
-    const matchesSearch = recipe.name
-      .toLowerCase()
-      .includes(searchTerm.toLowerCase());
-    return matchesCategory && matchesMealType && matchesSearch;// Return true if the recipe matches all filters and search term
+    const matchesDifficulty =
+      selectedDifficulty.length === 0 ||
+      selectedDifficulty.includes(recipe.difficulty);
+
+    const matchesRating = (() => {
+      if (selectedRatings.length === 0) return true;
+      return selectedRatings.some(range => {
+        const [min, max] = range.split('-').map(Number);
+        return recipe.rating >= min && recipe.rating <= max;
+      });
+    })();
+
+    const matchesCookTime =
+      selectedCookTimeMinutes.length === 0 ||
+      selectedCookTimeMinutes.includes(recipe.cookTimeMinutes);
+
+    const matchesSearch =
+      recipe.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      recipe.cuisine?.toLowerCase().includes(searchTerm.toLowerCase());
+
+    return (
+      matchesCategory && matchesMealType && matchesDifficulty && matchesRating && matchesCookTime && matchesSearch
+    );
   });
+
   const handleMealTypeChange = (type) => {
     // Toggle meal type selection
     if (selectedMealTypes.includes(type)) {
@@ -98,9 +134,16 @@ function App() {
         viewProfile={viewProfile}
         setViewProfile={setViewProfile}
       />
-   
 
-      {selectedProduct ? (
+      {viewProfile ? (
+        <div className="profile_view">
+          <h2>User Profile</h2>
+          <p>
+            This is a simple profile placeholder. The profile button now toggles
+            a view in the app.
+          </p>
+        </div>
+      ) : selectedProduct ? (
         <SelectedProduct
           setSelectedProduct={setSelectedProduct}
           selectedProduct={selectedProduct}
@@ -125,6 +168,15 @@ function App() {
               selectedMealTypes={selectedMealTypes}
               setSelectedMealTypes={setSelectedMealTypes}
               handleMealTypeChange={handleMealTypeChange}
+              difficulty={difficulty}
+              selectedDifficulty={selectedDifficulty}
+              setSelectedDifficulty={setSelectedDifficulty}
+              ratings={ratings}
+              selectedRatings={selectedRatings}
+              setSelectedRatings={setSelectedRatings}
+              cookTimeMinutes={cookTimeMinutes}
+              selectedCookTimeMinutes={selectedCookTimeMinutes}
+              setSelectedCookTimeMinutes={setSelectedCookTimeMinutes}
             />
           </aside>
 
@@ -135,7 +187,7 @@ function App() {
           />
         </div>
       )}
-       
+
       <Footer
         setSelectedProduct={setSelectedProduct}
         setviewSaveditems={setviewSaveditems}

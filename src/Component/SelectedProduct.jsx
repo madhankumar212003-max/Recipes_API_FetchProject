@@ -11,8 +11,15 @@ function SelectedProduct({ setSelectedProduct, selectedProduct, Recipes, onSave 
         <button className="close_btn" onClick={() => setSelectedProduct(null)}>x</button>
         <h2>{selectedProduct.name}</h2>
         <div className="selectedproductdetails">
-          <p>MealType:<span>{selectedProduct.mealType}</span></p>
-          {selectedProduct.cuisine && <p>Cuisine:<span>{selectedProduct.cuisine}</span></p>} 
+          <p>
+            MealType:
+            <span>
+              {Array.isArray(selectedProduct.mealType)
+                ? selectedProduct.mealType.join(", ")
+                : selectedProduct.mealType}
+            </span>
+          </p>
+          {selectedProduct.cuisine && <p>Cuisine:<span>{selectedProduct.cuisine}</span></p>}
           <p>Difficulty:<span>{selectedProduct.difficulty}</span></p>
         </div>
         <h3>Ingredients</h3>
